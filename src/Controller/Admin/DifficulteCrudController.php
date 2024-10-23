@@ -2,16 +2,16 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Categorie;
+use App\Entity\Difficulte;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class CategorieCrudController extends AbstractCrudController
+class DifficulteCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Categorie::class;
+        return Difficulte::class;
     }
 
     

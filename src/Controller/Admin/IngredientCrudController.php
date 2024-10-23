@@ -2,16 +2,17 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Categorie;
+use App\Entity\Ingredient;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class CategorieCrudController extends AbstractCrudController
+class IngredientCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Categorie::class;
+        return Ingredient::class;
     }
 
     
@@ -19,6 +20,8 @@ class CategorieCrudController extends AbstractCrudController
     {
         return [
             TextField::new('nom'),
+            TextEditorField::new('thumbnail'),
+            TextEditorField::new('unite_de_mesure'),
         ];
     }
     
