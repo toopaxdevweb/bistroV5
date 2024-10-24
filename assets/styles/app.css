@@ -9,13 +9,12 @@ body {
 #searchNavbar{
     display: none;
 }
+
 #navbar{
     background-color: rgb(250, 248, 244);
 }
 
-#footer{
-    background-color: grey;
-}
+
 
 
 /******************************************************************/
@@ -29,7 +28,9 @@ footer {
     margin-top: auto;
 }
 
-.d-flex {
+
+.marge {
+
     justify-content: space-between;
     margin-top: 2em;
 }
