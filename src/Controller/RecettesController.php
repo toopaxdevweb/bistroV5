@@ -4,8 +4,12 @@ namespace App\Controller;
 
 
 use App\Repository\CategorieRepository;
+
 use App\Repository\CommentaireRepository;
 use App\Repository\RecetteRepository;
+use App\Repository\BudgetRepository;
+use App\Repository\IngredientRepository;
+use App\Repository\SaisonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -13,10 +17,15 @@ use Symfony\Component\Routing\Attribute\Route;
 class RecettesController extends AbstractController
 {
     #[Route('/recettes', name: 'app_recettes')]
-    public function index(RecetteRepository $rr, CommentaireRepository $cr): Response
+
+    public function index(RecetteRepository $rr, CommentaireRepository $cr, CategorieRepository $cr,IngredientRepository $ing, SaisonRepository $sr, BudgetRepository $br): Response
     { 
         $recettes = $rr->findAll();
         $averageNotes = [];
+        $saison = $sr->findAll();
+        $budget = $br->findAll();
+        $ingredient = $ing->findAll();
+        $categorie = $cr->findAll();
 
         //affichage de la note
         foreach ($recettes as $recette) {
@@ -34,6 +43,10 @@ class RecettesController extends AbstractController
         return $this->render('recettes/index.html.twig', [
             'recettes' => $recettes,
             'averageNotes' => $averageNotes,
+            'categorie' => $categorie,
+            'saison' => $saison,
+            'budget' => $budget,
+            'ingredient' => $ingredient,
         ]);
     }
 
@@ -48,4 +61,3 @@ class RecettesController extends AbstractController
         ]);
     }
 }
-
