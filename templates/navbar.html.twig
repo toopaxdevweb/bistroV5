@@ -38,9 +38,8 @@
             {% endif %}
         </div>
         <div class="navbar-collapse collapse" id="navbarsExample05" style="">
-            <div class="d-flex justify-content-center flex-wrap container" id="navigationToggle" style="max-height:16em; overflow:hidden">
-                <div class="categorie me-auto">
-                    <h5>Catégories</h5>
+            <div class="d-flex justify-content-center flex-wrap container" id="navigationToggle">
+                <div class="categorie me-auto mt-2" style="max-height:16em; overflow:hidden"><h5>Catégories</h5>
                     {% for category in categorie %}
                         {% if category.nom == 'Saison' %}
                         {% else %}
@@ -50,21 +49,21 @@
                         {% endif %}
                     {% endfor %}
                 </div>
-                <div class="saison me-auto"><h5>Saisons</h5>
+                <div class="saison me-auto mt-2" style="max-height:16em; overflow:hidden"><h5>Saisons</h5>
                     {% for sai in saison %}
                         <div>
                             <a href="#" ><p class="me-5">{{sai.nom}}</p></a>
                         </div>  
                     {% endfor %}
                 </div>
-                <div class="prix me-auto"><h5>Prix</h5>
+                <div class="prix me-auto mt-2" style="max-height:16em; overflow:hidden"><h5>Prix</h5>
                     {% for bud in budget %}
                         <div>
                             <a href="#" ><p class="me-5">{{bud.nom}}</p></a>
                         </div>
                     {% endfor %}
                 </div>
-                <div class="ingredient me-auto" ><h5>Ingredients</h5>
+                <div class="ingredient mt-2 me-auto" style="max-height:16em; overflow:hidden"><h5>Ingredients</h5>
                     {% for ing in ingredient %}
                         <div>
                             <a href="#" ><p class="me-5">{{ing.nom}}</p></a>

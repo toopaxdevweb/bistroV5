@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Controller;
-
+use App\Repository\BudgetRepository;
+use App\Repository\IngredientRepository;
+use App\Repository\SaisonRepository;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\CategorieRepository;
@@ -16,12 +18,15 @@ use Symfony\Component\Routing\Attribute\Route;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager,CategorieRepository $cr): Response
+    public function register(Request $request,IngredientRepository $ing, SaisonRepository $sr, BudgetRepository $br ,UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager,CategorieRepository $cr): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
         $categorie = $cr->findAll();
+        $saison = $sr->findAll();
+        $budget = $br->findAll();
+        $ingredient = $ing->findAll();
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var string $plainPassword */
@@ -41,8 +46,12 @@ class RegistrationController extends AbstractController
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form,
             'categorie' => $categorie,
+            'saison' => $saison,
+            'budget' => $budget,
+            'ingredient' => $ingredient,
         ]);
     }
 }
 
 
+            
