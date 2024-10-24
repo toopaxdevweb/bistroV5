@@ -14,6 +14,13 @@ body {
     background-color: rgb(250, 248, 244);
 }
 
+#navigationToggle > div{
+    border-right:solid 1px grey ;
+    padding-right: 5%;
+    
+}
+
+
 
 
 /******************************************************************/
