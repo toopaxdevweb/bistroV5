@@ -1,5 +1,5 @@
     {% block navbar %}
-    <nav class="navbar " aria-label="Fifth navbar example">
+    <nav class="navbar" id="navbar" aria-label="Fifth navbar example">
     <div class="container-fluid">
         <div class="d-flex">
             <button class="navbar-toggler my-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,26 +38,19 @@
             {% endif %}
         </div>
         <div class="navbar-collapse collapse" id="navbarsExample05" style="">
-            <ul class="navbar-nav me-auto mb-2">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Catégories</a>
-               
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-                    <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="d-flex justify-content-center">
+                <div class="categorie">
+                    <h5>Catégories</h5>
+                    {% for category in categorie %}
+                        <div>
+                            <a href="/categorie/{{category.id}}" ><p class="me-5">{{category.nom}}</p></a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="saison"><h5>Saisons</h5></div>
+                <div class="prix"><h5>Prix</h5></div>
+                <div class="ingredient"><h5>Ingredients</h5></div>          
+            </div>
             <form role="search" id="searchCollapse">
                 <input class="form-control" type="search" placeholder="Search" aria-label="Search">
             </form>

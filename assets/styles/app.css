@@ -1,8 +1,12 @@
-body {
-    background-color: black;
-}
 #searchNavbar{
     display: none;
+}
+#navbar{
+    background-color: rgb(250, 248, 244);
+}
+
+#footer{
+    background-color: grey;
 }
 
 @media screen and (min-width:576px){
