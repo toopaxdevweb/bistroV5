@@ -38,18 +38,39 @@
             {% endif %}
         </div>
         <div class="navbar-collapse collapse" id="navbarsExample05" style="">
-            <div class="d-flex justify-content-center flex-wrap container" id="navigationToggle">
+            <div class="d-flex justify-content-center flex-wrap container" id="navigationToggle" style="max-height:16em; overflow:hidden">
                 <div class="categorie me-auto">
                     <h5>Catégories</h5>
                     {% for category in categorie %}
+                        {% if category.nom == 'Saison' %}
+                        {% else %}
                         <div>
                             <a href="/categorie/{{category.id}}" ><p class="me-5">{{category.nom}}</p></a>
+                        </div>                       
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="saison me-auto"><h5>Saisons</h5>
+                    {% for sai in saison %}
+                        <div>
+                            <a href="#" ><p class="me-5">{{sai.nom}}</p></a>
+                        </div>  
+                    {% endfor %}
+                </div>
+                <div class="prix me-auto"><h5>Prix</h5>
+                    {% for bud in budget %}
+                        <div>
+                            <a href="#" ><p class="me-5">{{bud.nom}}</p></a>
                         </div>
                     {% endfor %}
                 </div>
-                <div class="saison me-auto"><h5>Saisons</h5></div>
-                <div class="prix me-auto"><h5>Prix</h5></div>
-                <div class="ingredient me-auto"><h5>Ingredients</h5></div>          
+                <div class="ingredient me-auto" ><h5>Ingredients</h5>
+                    {% for ing in ingredient %}
+                        <div>
+                            <a href="#" ><p class="me-5">{{ing.nom}}</p></a>
+                        </div>
+                    {% endfor %}
+                </div>          
             </div>
             <form role="search" id="searchCollapse">
                 <input class="form-control" type="search" placeholder="Search" aria-label="Search">
