@@ -1,9 +1,65 @@
 body {
     background-color: black;
 }
+
+
+/******************************************************************/
+/**                           NAVBAR                             **/
+/******************************************************************/
 #searchNavbar{
     display: none;
 }
+
+
+/******************************************************************/
+/**                           FOOTER                             **/
+/******************************************************************/
+
+footer {
+    background-color: rgb(9, 13, 34);
+    color: #fff;
+    padding: 2em;
+    margin-top: auto;
+}
+
+.d-flex {
+    justify-content: space-between;
+    margin-top: 2em;
+}
+
+footer a {
+    color: white; /* Couleur du texte en blanc */
+    text-decoration: none; /* Supprime le soulignement */
+    transition: opacity 0.3s ease; /* Transition douce pour l'effet hover */
+}
+
+footer a:hover {
+    color: #f7bb8b;
+}
+
+footer ul {
+    list-style-type: none; /* Supprime les puces de la liste */
+    padding: 0;
+    margin: 0;
+    display: flex; /* Aligne les éléments horizontalement */
+}
+
+footer ul li {
+    margin-right: 20px; /* Espace entre les éléments de la liste */
+}
+
+footer p {
+    margin: 0;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+/******************************************************************/
+/**                       RESPONSIVE                             **/
+/******************************************************************/
 
 @media screen and (min-width:576px){
     #searchNavbar{
