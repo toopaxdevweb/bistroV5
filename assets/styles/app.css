@@ -5,8 +5,19 @@ body {
     display: none;
 }
 
-@media screen and (min-width:500px){
+@media screen and (min-width:576px){
     #searchNavbar{
-        display:block;
+        display: block;
+    }
+    #logo{
+        margin:0% 10%;
+    }
+    #searchCollapse{
+        display: none;
+    }
+}
+@media screen and (min-width:992px){
+    #searchNavbar{
+        width: 25rem;
     }
 }
