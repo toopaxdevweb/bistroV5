@@ -3,6 +3,7 @@
 {% block body %}
 
         <h1 class="text-center">Recettes {{categorieId.nom}}</h1>
-
-
+        {% for recettes in recette %}
+                <p>{{recettes.nom}}</p>               
+        {% endfor %}
 {% endblock %}

@@ -9,6 +9,7 @@ use App\Repository\CommentaireRepository;
 use App\Repository\RecetteRepository;
 use App\Repository\BudgetRepository;
 use App\Repository\IngredientRepository;
+use App\Repository\RecetteRepository;
 use App\Repository\SaisonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,6 +51,31 @@ class RecettesController extends AbstractController
         ]);
     }
 
+    
+    #[Route('/recettes/price/{id}', name: 'app_recettes_price')]
+    public function price(CategorieRepository $cr,$id, IngredientRepository $ing, SaisonRepository $sr, BudgetRepository $br, RecetteRepository $rr): Response
+    { 
+        $saison = $sr->findAll();
+        $budget = $br->findAll();
+        $budgetId = $br->find($id);
+        $ingredient = $ing->findAll();
+        $categorie = $cr->findAll();
+        $budgetName = $budgetId-> getNom();
+        $recette = $rr->findAll();
+        $targetRecette = $budgetId->getRecettes();
+
+        return $this->render('recettes/price.html.twig', [
+            'categorie' => $categorie,
+            'saison' => $saison,
+            'budget' => $budget,
+            'ingredient' => $ingredient,
+            'recette' => $recette,
+            'budgetName' => $budgetName,
+            'budgetId' => $budgetId,
+            'recette' => $recette,
+            'targetRecette' => $targetRecette,
+
+
     #[Route('/recettes/{id}', name: 'app_recettes_show')]
     public function show(RecetteRepository $rr, $id): Response
     { 
@@ -58,6 +84,7 @@ class RecettesController extends AbstractController
         return $this->render('recettes/show.html.twig', [
             'categorie' => $oneRec,
             'categories' => $recettes,
+
         ]);
     }
 }

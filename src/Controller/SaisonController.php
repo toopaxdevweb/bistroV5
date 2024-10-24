@@ -11,9 +11,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class CategorieController extends AbstractController
+class SaisonController extends AbstractController
 {
-    #[Route('/categorie', name: 'app_categorie')]
+    #[Route('/saison', name: 'app_saison')]
     public function index(CategorieRepository $cr,IngredientRepository $ing, SaisonRepository $sr, BudgetRepository $br): Response
     {
         $categorie = $cr->findAll();
@@ -21,33 +21,32 @@ class CategorieController extends AbstractController
         $budget = $br->findAll();
         $ingredient = $ing->findAll();
 
-        return $this->render('categorie/index.html.twig', [
-            'controller_name' => 'CategorieController',
+        return $this->render('saison/index.html.twig', [
             'categorie' => $categorie,
             'saison' => $saison,
             'budget' => $budget,
             'ingredient' => $ingredient,
         ]);
     }
-    
-    #[Route('/categorie/{id}', name: 'app_categorie_show')]
-    public function show(CategorieRepository $cr, $id, SaisonRepository $sr,IngredientRepository $ing, BudgetRepository $br ): Response
+
+    #[Route('saison/show/{id}', name: 'app_saison_show')]
+    public function show(CategorieRepository $cr,IngredientRepository $ing, $id, SaisonRepository $sr, BudgetRepository $br, RecetteRepository $rr): Response
     {
         $categorie = $cr->findAll();
-        $categorieId = $cr->find($id);
         $saison = $sr->findAll();
         $budget = $br->findAll();
         $ingredient = $ing->findAll();
-        $recette = $categorieId->getRecettes();
+        $targetSaison = $sr->find($id);
+        $recette = $rr->findAll();
+       
 
-        return $this->render('categorie/show.html.twig', [
-            'controller_name' => 'CategorieController',
+        return $this->render('saison/show.html.twig', [
             'categorie' => $categorie,
-            'categorieId' => $categorieId,
             'saison' => $saison,
             'budget' => $budget,
             'ingredient' => $ingredient,
-            'recette' => $recette,
-            ]);
+            'targetSaison' => $targetSaison,
+            
+        ]);
     }
 }
