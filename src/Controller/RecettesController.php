@@ -18,7 +18,7 @@ class RecettesController extends AbstractController
 {
     #[Route('/recettes', name: 'app_recettes')]
 
-    public function index(RecetteRepository $rr, CommentaireRepository $cr, CategorieRepository $cr,IngredientRepository $ing, SaisonRepository $sr, BudgetRepository $br): Response
+    public function index(RecetteRepository $rr, CommentaireRepository $cor, CategorieRepository $cr,IngredientRepository $ing, SaisonRepository $sr, BudgetRepository $br): Response
     { 
         $recettes = $rr->findAll();
         $averageNotes = [];
@@ -29,7 +29,7 @@ class RecettesController extends AbstractController
 
         //affichage de la note
         foreach ($recettes as $recette) {
-            $commentaires = $cr->findBy(['recette' => $recette]);
+            $commentaires = $cor->findBy(['recette' => $recette]);
             $totalNotes = 0;
             $count = count($commentaires);
 
