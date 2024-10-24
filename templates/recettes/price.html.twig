@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1 class="text-center">Recettes {{budgetName}}</h1>
+    {% for recettes in recette %}
+        {% if targetRecette == budgetId %}
+            <p>{{recettes.nom}}</p>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

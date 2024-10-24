@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+        <h1 class="text-center">Recettes de saison</h1>
+        {% for sai in saison %}
+            <div>
+                <a href="saison/show/{{sai.id}}" ><p class="me-5">{{sai.nom}}</p></a>
+            </div>  
+        {% endfor %}
+{% endblock %}

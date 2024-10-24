@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\BudgetRepository;
 use App\Repository\CategorieRepository;
 use App\Repository\IngredientRepository;
+use App\Repository\RecetteRepository;
 use App\Repository\SaisonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,21 +27,27 @@ class CategorieController extends AbstractController
             'saison' => $saison,
             'budget' => $budget,
             'ingredient' => $ingredient,
-                ]);
+        ]);
     }
     
     #[Route('/categorie/{id}', name: 'app_categorie_show')]
-    public function show(CategorieRepository $cr, $id, SaisonRepository $sr): Response
+    public function show(CategorieRepository $cr, $id, SaisonRepository $sr,IngredientRepository $ing, BudgetRepository $br ): Response
     {
         $categorie = $cr->findAll();
         $categorieId = $cr->find($id);
         $saison = $sr->findAll();
+        $budget = $br->findAll();
+        $ingredient = $ing->findAll();
+        $recette = $categorieId->getRecettes();
 
         return $this->render('categorie/show.html.twig', [
             'controller_name' => 'CategorieController',
             'categorie' => $categorie,
             'categorieId' => $categorieId,
             'saison' => $saison,
+            'budget' => $budget,
+            'ingredient' => $ingredient,
+            'recette' => $recette,
             ]);
     }
 }

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+        <h1 class="text-center">Recettes de saison</h1>
+        {{targetSaison.nom}}
+        {% for recettes in recette %}
+            {% if (recettes.saison.id == targetSaison.id) %}
+                <p>{{recettes.nom}}</p>
+            {% endif %}
+            {% endfor %}
+       {% endblock %}

@@ -2,9 +2,8 @@
 
 namespace App\Controller;
 
-
-use App\Repository\CategorieRepository;
 use App\Repository\BudgetRepository;
+use App\Repository\CategorieRepository;
 use App\Repository\IngredientRepository;
 use App\Repository\RecetteRepository;
 use App\Repository\SaisonRepository;
@@ -12,46 +11,42 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class RecettesController extends AbstractController
+class SaisonController extends AbstractController
 {
-    #[Route('/recettes', name: 'app_recettes')]
+    #[Route('/saison', name: 'app_saison')]
     public function index(CategorieRepository $cr,IngredientRepository $ing, SaisonRepository $sr, BudgetRepository $br): Response
-    { 
+    {
+        $categorie = $cr->findAll();
         $saison = $sr->findAll();
         $budget = $br->findAll();
         $ingredient = $ing->findAll();
-        $categorie = $cr->findAll();
-        return $this->render('recettes/index.html.twig', [
-            'controller_name' => 'RecettesController',
+
+        return $this->render('saison/index.html.twig', [
             'categorie' => $categorie,
             'saison' => $saison,
             'budget' => $budget,
             'ingredient' => $ingredient,
         ]);
     }
-    
-    #[Route('/recettes/price/{id}', name: 'app_recettes_price')]
-    public function price(CategorieRepository $cr,$id, IngredientRepository $ing, SaisonRepository $sr, BudgetRepository $br, RecetteRepository $rr): Response
-    { 
+
+    #[Route('saison/show/{id}', name: 'app_saison_show')]
+    public function show(CategorieRepository $cr,IngredientRepository $ing, $id, SaisonRepository $sr, BudgetRepository $br, RecetteRepository $rr): Response
+    {
+        $categorie = $cr->findAll();
         $saison = $sr->findAll();
         $budget = $br->findAll();
-        $budgetId = $br->find($id);
         $ingredient = $ing->findAll();
-        $categorie = $cr->findAll();
-        $budgetName = $budgetId-> getNom();
+        $targetSaison = $sr->find($id);
         $recette = $rr->findAll();
-        $targetRecette = $budgetId->getRecettes();
+       
 
-        return $this->render('recettes/price.html.twig', [
+        return $this->render('saison/show.html.twig', [
             'categorie' => $categorie,
             'saison' => $saison,
             'budget' => $budget,
             'ingredient' => $ingredient,
-            'recette' => $recette,
-            'budgetName' => $budgetName,
-            'budgetId' => $budgetId,
-            'recette' => $recette,
-            'targetRecette' => $targetRecette,
+            'targetSaison' => $targetSaison,
+            
         ]);
     }
 }
