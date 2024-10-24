@@ -10,6 +10,12 @@ body {
     display: none;
 }
 
+#navbar{
+    background-color: rgb(250, 248, 244);
+}
+
+
+
 
 /******************************************************************/
 /**                           FOOTER                             **/
@@ -22,7 +28,9 @@ footer {
     margin-top: auto;
 }
 
+
 .marge {
+
     justify-content: space-between;
     margin-top: 2em;
 }
