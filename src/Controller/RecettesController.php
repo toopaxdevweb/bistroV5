@@ -8,7 +8,6 @@ use App\Repository\CommentaireRepository;
 use App\Repository\RecetteRepository;
 use App\Repository\BudgetRepository;
 use App\Repository\IngredientRepository;
-use App\Repository\RecetteRepository;
 use App\Repository\SaisonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -73,6 +72,8 @@ class RecettesController extends AbstractController
             'budgetId' => $budgetId,
             'recette' => $recette,
             'targetRecette' => $targetRecette,
+        ]);
+    }
 
 
     #[Route('/recettes/{id}', name: 'app_recettes_show')]
