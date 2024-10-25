@@ -2,10 +2,8 @@
 
 {% block body %}
 
-    <h1 class="text-center">Recettes {{budgetName}}</h1>
-    {% for recettes in recette %}
-        {% if targetRecette == budgetId %}
+    <h1 class="text-center">Tarif {{budgetName}}</h1>
+    {% for recettes in targetRecette %}
             <p>{{recettes.nom}}</p>
-        {% endif %}
     {% endfor %}
 {% endblock %}

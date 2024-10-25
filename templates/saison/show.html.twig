@@ -3,7 +3,7 @@
 {% block body %}
 
         <h1 class="text-center">Recettes de saison</h1>
-        {{targetSaison.nom}}
+        <h4 class="text-center">{{targetSaison.nom}}</h4>
         {% for recettes in recette %}
             {% if (recettes.saison.id == targetSaison.id) %}
                 <p>{{recettes.nom}}</p>

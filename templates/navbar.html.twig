@@ -59,14 +59,14 @@
                 <div class="prix me-auto mt-2" style="max-height:16em; overflow:hidden"><h5>Prix</h5>
                     {% for bud in budget %}
                         <div>
-                            <a href="#" ><p class="me-5">{{bud.nom}}</p></a>
+                            <a href="/recettes/price/{{bud.id}}"><p class="me-5">{{bud.nom}}</p></a>
                         </div>
                     {% endfor %}
                 </div>
                 <div class="ingredient mt-2 me-auto" style="max-height:16em; overflow:hidden"><h5>Ingredients</h5>
                     {% for ing in ingredient %}
                         <div>
-                            <a href="#" ><p class="me-5">{{ing.nom}}</p></a>
+                            <a href="/recettes/ingredient/{{ing.id}}" ><p class="me-5">{{ing.nom}}</p></a>
                         </div>
                     {% endfor %}
                 </div>          

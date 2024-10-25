@@ -115,4 +115,29 @@ class RecettesController extends AbstractController
 
         ]);
     }
+
+    #[Route('/recettes/ingredient/{id}', name: 'app_recettes_ingredient')]
+    public function ingredient(CategorieRepository $cr,$id, IngredientRepository $ing, SaisonRepository $sr, BudgetRepository $br, RecetteRepository $rr): Response
+    { 
+        $saison = $sr->findAll();
+        $budget = $br->findAll();
+        $ingredientId = $ing->find($id);
+        $ingredient = $ing->findAll();
+        $categorie = $cr->findAll();
+        $ingredientName = $ingredientId-> getNom();
+        $recette = $rr->findAll();
+        $targetRecette = $ingredientId->getRecettes();
+
+        return $this->render('recettes/ingredient.html.twig', [
+            'categorie' => $categorie,
+            'saison' => $saison,
+            'budget' => $budget,
+            'ingredient' => $ingredient,
+            'recette' => $recette,
+            'ingredientName' => $ingredientName,
+            'ingredientId' => $ingredientId,
+            'recette' => $recette,
+            'targetRecette' => $targetRecette,
+        ]);
+    }
 }
