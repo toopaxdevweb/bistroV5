@@ -4,6 +4,6 @@
 
     <h1 class="text-center">{{ingredientName}}</h1>
     {% for recette in targetRecette %}
-            <p>{{ recette.nom }}</p>
+            <a href="/recettes/{{recette.id}}"><p>{{ recette.nom }}</p></a>
     {% endfor %}
 {% endblock %}
