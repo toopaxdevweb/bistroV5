@@ -24,6 +24,21 @@ body a:hover {
     text-align: center;
 }
 
+h2 {
+    margin-top: 2em;
+}
+
+
+/******************************************************************/
+/**                           SHOW RECETTE                       **/
+/******************************************************************/
+.ingredient-image {
+    width: 50px; /* Largeur fixe */
+    height: 50px; /* Hauteur fixe */
+    object-fit: cover; /* Pour garder le ratio et couper l'image si nécessaire */
+    border-radius: 5px;
+}
+
 /******************************************************************/
 /**                           NAVBAR                             **/
 /******************************************************************/
