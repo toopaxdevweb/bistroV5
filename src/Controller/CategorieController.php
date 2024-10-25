@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\BudgetRepository;
 use App\Repository\CategorieRepository;
+use App\Repository\CommentaireRepository;
 use App\Repository\IngredientRepository;
 use App\Repository\RecetteRepository;
 use App\Repository\SaisonRepository;
@@ -31,23 +32,38 @@ class CategorieController extends AbstractController
     }
     
     #[Route('/categorie/{id}', name: 'app_categorie_show')]
-    public function show(CategorieRepository $cr, $id, SaisonRepository $sr,IngredientRepository $ing, BudgetRepository $br ): Response
+    public function show(CategorieRepository $cr,CommentaireRepository $cor, $id, SaisonRepository $sr,IngredientRepository $ing, BudgetRepository $br ): Response
     {
         $categorie = $cr->findAll();
         $categorieId = $cr->find($id);
         $saison = $sr->findAll();
         $budget = $br->findAll();
         $ingredient = $ing->findAll();
-        $recette = $categorieId->getRecettes();
+        $recettes = $categorieId->getRecettes();
+        $averageNotes = [];
+
+        //affichage de la note
+        foreach ($recettes as $recette) {
+            $commentaires = $cor->findBy(['recette' => $recette]);
+            $totalNotes = 0;
+            $count = count($commentaires);
+
+            foreach ($commentaires as $commentaire) {
+                $totalNotes += (float)$commentaire->getNote();
+            }
+
+            $averageNotes[$recette->getId()] = $count > 0 ? $totalNotes / $count : null;
+        }
 
         return $this->render('categorie/show.html.twig', [
-            'controller_name' => 'CategorieController',
+            
+            'averageNotes' => $averageNotes,
             'categorie' => $categorie,
             'categorieId' => $categorieId,
             'saison' => $saison,
             'budget' => $budget,
             'ingredient' => $ingredient,
-            'recette' => $recette,
+            'recettes' => $recettes,
             ]);
     }
 }

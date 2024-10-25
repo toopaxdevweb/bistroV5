@@ -50,6 +50,25 @@ class RecettesController extends AbstractController
             'ingredient' => $ingredient,
         ]);
     }
+    #[Route('/recettes/price', name: 'app_recettes_priceAll')]
+    public function priceAll(CategorieRepository $cr, IngredientRepository $ing, SaisonRepository $sr, BudgetRepository $br, RecetteRepository $rr): Response
+    { 
+        $saison = $sr->findAll();
+        $budget = $br->findAll();
+        $ingredient = $ing->findAll();
+        $categorie = $cr->findAll();
+        $recette = $rr->findAll();
+
+
+        return $this->render('recettes/priceAll.html.twig', [
+            'categorie' => $categorie,
+            'saison' => $saison,
+            'budget' => $budget,
+            'ingredient' => $ingredient,
+            'recette' => $recette,
+
+        ]);
+    }
 
     
     #[Route('/recettes/price/{id}', name: 'app_recettes_price')]
@@ -72,9 +91,35 @@ class RecettesController extends AbstractController
             'recette' => $recette,
             'budgetName' => $budgetName,
             'budgetId' => $budgetId,
+
+            'targetRecette' => $targetRecette,
+        ]);
+    }
+
+    #[Route('/recettes/ingredient/{id}', name: 'app_recettes_ingredient')]
+    public function ingredient(CategorieRepository $cr,$id, IngredientRepository $ing, SaisonRepository $sr, BudgetRepository $br, RecetteRepository $rr): Response
+    { 
+        $saison = $sr->findAll();
+        $budget = $br->findAll();
+        $ingredientId = $ing->find($id);
+        $ingredient = $ing->findAll();
+        $categorie = $cr->findAll();
+        $ingredientName = $ingredientId-> getNom();
+        $recette = $rr->findAll();
+        $targetRecette = $ingredientId->getRecettes();
+
+        return $this->render('recettes/ingredient.html.twig', [
+            'categorie' => $categorie,
+            'saison' => $saison,
+            'budget' => $budget,
+            'ingredient' => $ingredient,
             'recette' => $recette,
-            'targetRecette' => $targetRecette,]);
-        }
+            'ingredientName' => $ingredientName,
+            'ingredientId' => $ingredientId,
+            'recette' => $recette,
+            'targetRecette' => $targetRecette,
+        ]);
+    }
 
     #[Route('/recettes/{id}', name: 'app_recettes_show')]
     public function show(RecetteRepository $rr, CommentaireRepository $cor, CategorieRepository $cr,IngredientRepository $ing, SaisonRepository $sr, BudgetRepository $br, DifficulteRepository $dr, UstensileRepository $ur, $id): Response
