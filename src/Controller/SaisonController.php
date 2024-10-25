@@ -46,6 +46,7 @@ class SaisonController extends AbstractController
             'budget' => $budget,
             'ingredient' => $ingredient,
             'targetSaison' => $targetSaison,
+            'recette' => $recette,
             
         ]);
     }

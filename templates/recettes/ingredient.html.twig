@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1 class="text-center">{{ingredientName}}</h1>
+    {% for recette in targetRecette %}
+            <p>{{ recette.nom }}</p>
+    {% endfor %}
+{% endblock %}
