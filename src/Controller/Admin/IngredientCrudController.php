@@ -4,8 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Ingredient;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class IngredientCrudController extends AbstractCrudController
@@ -20,8 +18,6 @@ class IngredientCrudController extends AbstractCrudController
     {
         return [
             TextField::new('nom'),
-            TextEditorField::new('thumbnail'),
-            TextEditorField::new('unite_de_mesure'),
         ];
     }
     
