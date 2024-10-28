@@ -22,7 +22,7 @@
                 <a href="/admin" class="nav-link me-3" aria-current="page" style="color:white">Accès Admin</a>                           
             {% endif %}
             {% if app.user %}
-                <a href="/profile"><p class="m-0 pe-3" style="color:black">{{app.user.username}}</p></a>
+                <a href="/profil"><p class="m-0 pe-3" style="color:black">{{app.user.pseudo}}</p></a>
                 <a href="/logout"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="black" class="bi bi-x-lg" viewBox="0 0 16 16">
                 <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
                 </svg></a>
@@ -40,7 +40,7 @@
         <div class="navbar-collapse collapse" id="navbarsExample05" style="">
             <div class="d-flex justify-content-center flex-wrap container" id="navigationToggle">
                 <div class="categorie me-auto mt-2" style="max-height:16em; overflow:hidden"><a href="/categorie"><h5>Catégories</h5></a>
-                    {% for category in categorie %}
+                    {% for category in global_categories.getAllCategories %}
                         {% if category.nom == 'Saison' %}
                         {% else %}
                         <div>
@@ -50,21 +50,21 @@
                     {% endfor %}
                 </div>
                 <div class="saison me-auto mt-2" style="max-height:16em; overflow:hidden"><a href="/saison"><h5>Saisons</h5></a>
-                    {% for sai in saison %}
+                    {% for sai in global_saisons.getAllSaisons %}
                         <div>
                             <a href="/saison/show/{{sai.id}}" ><p class="me-5">{{sai.nom}}</p></a>
                         </div>  
                     {% endfor %}
                 </div>
                 <div class="prix me-auto mt-2" style="max-height:16em; overflow:hidden"><a href="/recettes/price"><h5>Prix</h5></a>
-                    {% for bud in budget %}
+                    {% for bud in global_budgets.getAllBudget %}
                         <div>
                             <a href="/recettes/price/{{bud.id}}"><p class="me-5">{{bud.nom}}</p></a>
                         </div>
                     {% endfor %}
                 </div>
                 <div class="ingredient mt-2 me-auto" style="max-height:16em; overflow:hidden"><a href="/recettes/ingredient"><h5>Ingredients</h5></a>
-                    {% for ing in ingredient %}
+                    {% for ing in global_ingredients.getAllIngredients %}
                         <div>
                             <a href="/recettes/ingredient/{{ing.id}}" ><p class="me-5">{{ing.nom}}</p></a>
                         </div>

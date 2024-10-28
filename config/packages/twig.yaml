@@ -1,5 +1,11 @@
 twig:
     file_name_pattern: '*.twig'
+    form_themes: ['bootstrap_5_layout.html.twig']
+    globals:
+        global_categories: '@App\Service\GetCategories'
+        global_saisons: '@App\Service\GetSaisons'
+        global_budgets: '@App\Service\GetBudget'
+        global_ingredients: '@App\Service\GetIngredient'
 
 when@test:
     twig:
