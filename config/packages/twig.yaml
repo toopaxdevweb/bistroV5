@@ -6,6 +6,7 @@ twig:
         global_saisons: '@App\Service\GetSaisons'
         global_budgets: '@App\Service\GetBudget'
         global_ingredients: '@App\Service\GetIngredient'
+        global_users: '@App\Service\GetUser'
 
 when@test:
     twig:
