@@ -2,31 +2,31 @@
 
 namespace App\Entity;
 
-use App\Repository\DifficulteRepository;
+use App\Repository\SaisonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: DifficulteRepository::class)]
-class Difficulte
+#[ORM\Entity(repositoryClass: SaisonRepository::class)]
+class Saison
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
     private ?string $nom = null;
 
     /**
      * @var Collection<int, Recette>
      */
-    #[ORM\OneToMany(targetEntity: Recette::class, mappedBy: 'difficulte')]
-    private Collection $recettes;
+    #[ORM\OneToMany(targetEntity: Recette::class, mappedBy: 'saison')]
+    private Collection $recette;
 
     public function __construct()
     {
-        $this->recettes = new ArrayCollection();
+        $this->recette = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -49,16 +49,16 @@ class Difficulte
     /**
      * @return Collection<int, Recette>
      */
-    public function getRecettes(): Collection
+    public function getRecette(): Collection
     {
-        return $this->recettes;
+        return $this->recette;
     }
 
     public function addRecette(Recette $recette): static
     {
-        if (!$this->recettes->contains($recette)) {
-            $this->recettes->add($recette);
-            $recette->setDifficulte($this);
+        if (!$this->recette->contains($recette)) {
+            $this->recette->add($recette);
+            $recette->setSaison($this);
         }
 
         return $this;
@@ -66,15 +66,13 @@ class Difficulte
 
     public function removeRecette(Recette $recette): static
     {
-        if ($this->recettes->removeElement($recette)) {
+        if ($this->recette->removeElement($recette)) {
             // set the owning side to null (unless already changed)
-            if ($recette->getDifficulte() === $this) {
-                $recette->setDifficulte(null);
+            if ($recette->getSaison() === $this) {
+                $recette->setSaison(null);
             }
         }
 
         return $this;
     }
-
-
 }

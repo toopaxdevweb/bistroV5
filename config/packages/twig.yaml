@@ -7,6 +7,9 @@ twig:
         global_budgets: '@App\Service\GetBudget'
         global_ingredients: '@App\Service\GetIngredient'
 
+        global_users: '@App\Service\GetUser'
+
+
 when@test:
     twig:
         strict_variables: true

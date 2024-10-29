@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1 class="text-center">Ingrédient</h1>
+    <div class="container d-flex flex-wrap my-4">
+        {% for ing in ingredient %}
+                <a href="recettes/ingredient/{{ing.id}}"><p class="m-2">{{ ing.nom }}</p></a>
+        {% endfor %}
+    </div>
+{% endblock %}

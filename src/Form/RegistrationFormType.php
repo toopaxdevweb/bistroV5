@@ -20,6 +20,7 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email')
+
             ->add('pseudo', TextType::class, [
                 'required' => true,
                 'label' => 'Pseudo',
@@ -33,6 +34,9 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+
+            ->add('pseudo')
+
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [

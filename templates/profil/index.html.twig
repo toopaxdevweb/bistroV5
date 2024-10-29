@@ -5,14 +5,16 @@
 {% block body %}
 
     <div class="container">
-        <h1>Bonjour ! </h1>
 
-        <div>
+
+        <h1>Bonjour ! </h1>        <div>
             <h2>Mes recettes</h2>
             <table>
-                {% for user in users %}
+                {% for user in global_users.getAllUser  %}
                     <tr>
-                        <td>{{ recette.nom }}</td><td> | </td>
+                        {# <td>{{  }}</td> #}
+                        <td> | </td>
+
                     </tr>
                 {% endfor %}
             </table>
@@ -20,9 +22,12 @@
         <div>
             <h2>Mes recettes favorites</h2>
             <table>
-                {% for user in users %}
+
+                {% for user in global_users.getAllUser %}
                     <tr>
-                        <td>{{ favoris.recette }}</td><td> | </td>
+                        {# <td>{{ favoris.recette }}</td> #}
+                        <td> | </td>
+
                     </tr>
                 {% endfor %}
             </table>

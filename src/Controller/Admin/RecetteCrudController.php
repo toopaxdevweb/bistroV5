@@ -30,14 +30,13 @@ class RecetteCrudController extends AbstractCrudController
             DateTimeField::new('date'),
             TextEditorField::new('description'),
             TextEditorField::new('temps'),
-<<<<<<< Updated upstream
+
             AssociationField::new('difficulte_id'),
             AssociationField::new('budget_id'),
             AssociationField::new('user_id'),
-=======
-            AssociationField::new('difficulte'),
-            AssociationField::new('budget'),
->>>>>>> Stashed changes
+
+         ,
+
         ];
     }
 }
