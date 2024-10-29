@@ -19,6 +19,7 @@ class IngredientCrudController extends AbstractCrudController
     {
         return [
             TextField::new('nom'),
+
             ImageField::new('thumbnail')
                 ->setRequired(false)
                 ->setBasePath('uploads/')

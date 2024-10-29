@@ -6,6 +6,7 @@ use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
@@ -32,6 +33,7 @@ class UserCrudController extends AbstractCrudController
     {
         return [
             TextField::new('email'),
+
             TextField::new('pseudo'),
             TextField::new('password')
                 ->setRequired($pageName === Crud::PAGE_NEW)
