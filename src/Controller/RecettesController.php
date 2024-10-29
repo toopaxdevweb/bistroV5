@@ -289,8 +289,7 @@ class RecettesController extends AbstractController
                 'form' => $form->createView(),
             ]);
         }
-
-    }
+    
     #[Route('/', name: 'app_accueil')]
     public function accueil(CategorieRepository $cr,CommentaireRepository $cor, IngredientRepository $ing,RecetteRepository $rr, SaisonRepository $sr, BudgetRepository $br): Response
     {
