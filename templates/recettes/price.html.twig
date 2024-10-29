@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center">Tarif {{budgetName}}</h1>
+    {% for recettes in targetRecette %}
+            <a href="/recettes/{{recettes.id}}"><p>{{recettes.nom}}</p></a>
+    {% endfor %}
+{% endblock %}
