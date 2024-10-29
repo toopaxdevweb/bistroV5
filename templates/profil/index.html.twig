@@ -5,6 +5,8 @@
 {% block body %}
 
     <div class="container">
+
+
         <h1>Bonjour ! </h1>        <div>
             <h2>Mes recettes</h2>
             <table>
@@ -12,6 +14,7 @@
                     <tr>
                         {# <td>{{  }}</td> #}
                         <td> | </td>
+
                     </tr>
                 {% endfor %}
             </table>
@@ -19,10 +22,12 @@
         <div>
             <h2>Mes recettes favorites</h2>
             <table>
+
                 {% for user in global_users.getAllUser %}
                     <tr>
                         {# <td>{{ favoris.recette }}</td> #}
                         <td> | </td>
+
                     </tr>
                 {% endfor %}
             </table>
