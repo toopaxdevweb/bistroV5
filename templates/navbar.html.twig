@@ -64,7 +64,7 @@
                     {% endfor %}
                 </div>
 
-                <div class="ingredient mt-2 me-auto" style="max-height:16em; overflow:hidden"><a href="/recettes/ingredient"><h5>Ingredients</h5></a>
+                <div class="ingredient mt-2 me-auto" style="max-height:16em; overflow:hidden"><a href="/ingredient"><h5>Ingredients</h5></a>
                     {% for ing in global_ingredients.getAllIngredients %}
                         <div>
                             <a href="/recettes/ingredient/{{ing.id}}" ><p class="me-5">{{ing.nom}}</p></a>
