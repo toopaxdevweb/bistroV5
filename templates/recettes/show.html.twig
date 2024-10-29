@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}Bistroquet{% endblock %}
 {% block body %}
     {% if recette == null %}
@@ -6,8 +7,11 @@
         Ajouter une recette.
     {% else %}
     <div class="container">
-        <h1>{{ recette.nom }}</h1>
-        <div class="favoris"><i class="far fa-star" id="etoile"></i></div>
+        <div class="d-flex gap-2">
+            <h1>{{ recette.nom }}</h1>
+            <div class="favoris"><a href="{{ path('ajout_favori', {'id': recette.id}) }}"><i class="far fa-star" id="etoile"></a></i></div>
+        </div>
+
         <div class="">
             <div class="d-flex gap-2">
                 <div class="d-flex gap-2">
@@ -41,7 +45,11 @@
                 </div>
                 <div><small><a href="#avis">({{ recette.commentaires|length }}) avis</a></small></div>
             </div>
+
+            
             <img src="{{ recette.image }}" alt="" class="width100">
+            <div><small>Contributeur : {{ recette.idUser.pseudo }}</small></div>
+
             <div class="d-flex p-2 gap-3">
                 <p>Temps : {{ recette.temps }} minutes.</p>
                 <p>Difficulté : {{ recette.difficulte.nom }}.</p>
@@ -139,5 +147,7 @@
             </section>
         </div>    
     </div>
+
     {% endif %}
+
 {% endblock %}

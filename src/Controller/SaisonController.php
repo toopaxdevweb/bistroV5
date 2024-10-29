@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Repository\BudgetRepository;
 use App\Repository\CategorieRepository;
+
 use App\Repository\CommentaireRepository;
+
 use App\Repository\IngredientRepository;
 use App\Repository\RecetteRepository;
 use App\Repository\SaisonRepository;
@@ -31,13 +33,17 @@ class SaisonController extends AbstractController
     }
 
     #[Route('saison/show/{id}', name: 'app_saison_show')]
+
+
     public function show(CategorieRepository $cr,CommentaireRepository $cor,IngredientRepository $ing, $id, SaisonRepository $sr, BudgetRepository $br, RecetteRepository $rr): Response
+
     {
         $categorie = $cr->findAll();
         $saison = $sr->findAll();
         $budget = $br->findAll();
         $ingredient = $ing->findAll();
         $targetSaison = $sr->find($id);
+
         $recettes = $rr->findAll();
 
         foreach ($recettes as $recette) {
@@ -51,6 +57,7 @@ class SaisonController extends AbstractController
 
             $averageNotes[$recette->getId()] = $count > 0 ? $totalNotes / $count : null;
         }
+
        
 
         return $this->render('saison/show.html.twig', [
@@ -59,8 +66,12 @@ class SaisonController extends AbstractController
             'budget' => $budget,
             'ingredient' => $ingredient,
             'targetSaison' => $targetSaison,
+
+            
+
             'recette' => $recettes,
             'averageNotes' => $averageNotes,
+
             
         ]);
     }
