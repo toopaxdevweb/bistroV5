@@ -31,11 +31,9 @@ class RecetteCrudController extends AbstractCrudController
             TextEditorField::new('description'),
             TextEditorField::new('temps'),
 
-            AssociationField::new('difficulte_id'),
-            AssociationField::new('budget_id'),
-            AssociationField::new('user_id'),
+            AssociationField::new('difficulte'),
+            AssociationField::new('budget'),
 
-         ,
 
         ];
     }
