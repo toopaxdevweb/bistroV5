@@ -33,8 +33,6 @@ class RecetteCrudController extends AbstractCrudController
 
             AssociationField::new('difficulte'),
             AssociationField::new('budget'),
-
-
         ];
     }
 }

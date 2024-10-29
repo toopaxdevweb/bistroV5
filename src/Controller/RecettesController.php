@@ -252,6 +252,7 @@ class RecettesController extends AbstractController
             'budget' => $budget,
             'ingredient' => $ingredient,
             'averageNote' => $averageNote,
+            'averageNotes' => $averageNotes,
             'oneRec' => $oneRec,
             'categories' => $categories,
             'difficulte' => $difficulte,
@@ -291,7 +292,6 @@ class RecettesController extends AbstractController
             ]);
         }
 
-    
     #[Route('/', name: 'app_accueil')]
     public function accueil(CategorieRepository $cr,CommentaireRepository $cor, IngredientRepository $ing,RecetteRepository $rr, SaisonRepository $sr, BudgetRepository $br): Response
     {
@@ -369,7 +369,7 @@ class RecettesController extends AbstractController
         }
 
         $favori = $this->entityManager->getRepository(Favoris::class)->findOneBy([
-            'user' => $idUser,
+            'idUser' => $idUser,
             'recette' => $recette
         ]);
 
@@ -387,6 +387,6 @@ class RecettesController extends AbstractController
         $this->entityManager->flush();
 
         // Rediriger vers la page de la recette
-        return $this->redirectToRoute('show_recette', ['id' => $recette->getId()]);
+        return $this->redirectToRoute('app_accueil');
     }
 }
