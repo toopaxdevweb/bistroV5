@@ -1,9 +1,13 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{ recette.nom }}{% endblock %}
+{% block title %}Bistroquet{% endblock %}
 {% block body %}
+    {% if recette == null %}
+        Aucune recette existe avec cet ingredient.
+        Ajouter une recette.
+    {% else %}
     <div class="container">
         <h1>{{ recette.nom }}</h1>
-        
+        <div class="favoris"><i class="far fa-star" id="etoile"></i></div>
         <div class="">
             <div class="d-flex gap-2">
                 <div class="d-flex gap-2">
@@ -135,4 +139,5 @@
             </section>
         </div>    
     </div>
+    {% endif %}
 {% endblock %}

@@ -31,13 +31,27 @@ class RecetteRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Recette
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function foundByOrder($nbRecette = 4)
+    {
+        return $this->createQueryBuilder('r')
+            ->orderBy('r.date', 'DESC')
+            ->setMaxResults($nbRecette)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function foundByNote($nbRecette = 4)
+    {
+        return $this->createQueryBuilder('r')
+            ->leftJoin('r.commentaires', 'a')
+            ->groupBy('r.id')
+            ->orderBy('AVG(a.note)', 'DESC')
+            ->setMaxResults($nbRecette)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    
 }
