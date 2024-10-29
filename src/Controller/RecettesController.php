@@ -369,7 +369,7 @@ class RecettesController extends AbstractController
         }
 
         $favori = $this->entityManager->getRepository(Favoris::class)->findOneBy([
-            'user' => $idUser,
+            'idUser' => $idUser,
             'recette' => $recette
         ]);
 
@@ -387,6 +387,6 @@ class RecettesController extends AbstractController
         $this->entityManager->flush();
 
         // Rediriger vers la page de la recette
-        return $this->redirectToRoute('show_recette', ['id' => $recette->getId()]);
+        return $this->redirectToRoute('app_accueil');
     }
 }
