@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Commentaire;
 use App\Entity\Favoris;
 use App\Entity\Recette;
+use App\Form\AddRecettesType;
 use App\Form\CommentaireType;
 use App\Repository\CategorieRepository;
 use App\Repository\CommentaireRepository;
@@ -251,6 +252,7 @@ class RecettesController extends AbstractController
             'budget' => $budget,
             'ingredient' => $ingredient,
             'averageNote' => $averageNote,
+            'averageNotes' => $averageNotes,
             'oneRec' => $oneRec,
             'categories' => $categories,
             'difficulte' => $difficulte,
@@ -289,7 +291,7 @@ class RecettesController extends AbstractController
                 'form' => $form->createView(),
             ]);
         }
-    
+
     #[Route('/', name: 'app_accueil')]
     public function accueil(CategorieRepository $cr,CommentaireRepository $cor, IngredientRepository $ing,RecetteRepository $rr, SaisonRepository $sr, BudgetRepository $br): Response
     {
