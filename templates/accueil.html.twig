@@ -26,106 +26,27 @@
                 <a href="/recettes/{{ recette.id }}"><h3 style="overflow:hidden; height:3.5em">{{ recette.nom }}</h3></a>
                 <p>{{ averageNotes[recette.id]|number_format(1) }}</p>  
                 <span class="toques-container">
-                    {% set note = averageNotes[recette.id] %}
-                    {% for i in 1..5 %}
-                        {% if i <= note %}
-                                        <!-- Afficher la toque pleine -->
-                                            <svg
-                                                width="30"
-                                                height="30"
-                                                viewBox="0 0 132.29167 132.29167"
-                                                version="1.1"
-                                                id="svg1"
-                                                xml:space="preserve"
-                                                inkscape:version="1.4 (86a8ad7, 2024-10-11)"
-                                                sodipodi:docname="toque-pleine.svg"
-                                                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-                                                xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
-                                                    id="namedview1"
-                                                    pagecolor="#ffffff"
-                                                    bordercolor="#000000"
-                                                    borderopacity="0.25"
-                                                    inkscape:showpageshadow="2"
-                                                    inkscape:pageopacity="0.0"
-                                                    inkscape:pagecheckerboard="0"
-                                                    inkscape:deskcolor="#d1d1d1"
-                                                    inkscape:document-units="mm"
-                                                    inkscape:zoom="1.1"
-                                                    inkscape:cx="175.90909"
-                                                    inkscape:cy="229.54545"
-                                                    inkscape:window-width="1920"
-                                                    inkscape:window-height="1017"
-                                                    inkscape:window-x="1912"
-                                                    inkscape:window-y="-8"
-                                                    inkscape:window-maximized="1"
-                                                    inkscape:current-layer="layer2" /><defs
-                                                    id="defs1" /><g
-                                                    inkscape:label="Calque 1"
-                                                    inkscape:groupmode="layer"
-                                                    id="layer1" /><g
-                                                    inkscape:groupmode="layer"
-                                                    id="layer2"
-                                                    inkscape:label="Calque 2"><path
-                                                    style="fill:#000000;stroke:#000000;stroke-width:2.49012;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
-                                                    d="m 34.597463,78.525004 2.292711,39.575056 h 54.64292 l 2.674828,-40.811777 c 0,0 25.860438,-2.40834 21.398628,-26.795607 C 112.00241,30.79326 84.502548,33.424083 84.502548,33.424083 c 0,0 -2.086319,-19.815638 -18.901977,-20.579582 -15.273302,-0.693873 -21.068035,19.92185 -21.068035,19.92185 0,0 -31.040014,-3.791395 -31.333697,20.199765 -0.257394,21.02645 21.398624,25.558888 21.398624,25.558888 z"
-                                                    id="path1"
-                                                    sodipodi:nodetypes="ccccscscsc" /></g></svg>
-                                    {% elseif i <= note + 0.5 %}
-                                            <!-- Afficher la toque demi -->
-                                            <svg
-                                                width="30"
-                                                height="30"
-                                                viewBox="0 0 132.29167 132.29167"
-                                                version="1.1"
-                                                id="svg1"
-                                                xml:space="preserve"
-                                                inkscape:version="1.4 (86a8ad7, 2024-10-11)"
-                                                sodipodi:docname="toque-demi.svg"
-                                                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-                                                xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
-                                                    id="namedview1"
-                                                    pagecolor="#ffffff"
-                                                    bordercolor="#000000"
-                                                    borderopacity="0.25"
-                                                    inkscape:showpageshadow="2"
-                                                    inkscape:pageopacity="0.0"
-                                                    inkscape:pagecheckerboard="0"
-                                                    inkscape:deskcolor="#d1d1d1"
-                                                    inkscape:document-units="mm"
-                                                    inkscape:zoom="1.1"
-                                                    inkscape:cx="175.90909"
-                                                    inkscape:cy="229.54545"
-                                                    inkscape:window-width="1920"
-                                                    inkscape:window-height="1017"
-                                                    inkscape:window-x="1912"
-                                                    inkscape:window-y="-8"
-                                                    inkscape:window-maximized="1"
-                                                    inkscape:current-layer="layer2" /><defs
-                                                    id="defs1" /><g
-                                                    inkscape:label="Calque 1"
-                                                    inkscape:groupmode="layer"
-                                                    id="layer1" /><g
-                                                    inkscape:groupmode="layer"
-                                                    id="layer2"
-                                                    inkscape:label="Calque 2"><g
-                                                    id="g5"
-                                                    transform="matrix(1.9209735,0,0,1.9209735,-84.207927,-11.722105)"><path
-                                                        d="m 77.837673,25.623477 c 0.04969,-3.147257 0.115681,-6.085989 0.205156,-8.687325 -5.322261,0.634912 -7.371643,7.921481 -7.371643,7.921481 0,0 -12.403332,-1.515099 -12.520683,8.071342 -0.10285,8.4018 8.550899,10.21333 8.550899,10.21333 l 0.915707,15.813509 h 10.133748 c -0.02635,-3.4809 -0.06797,-10.816711 -0.03669,-19.973462 -0.03137,-2.852468 -0.01109,-6.858918 0.123506,-13.358875 z"
-                                                        style="stroke:#000000;stroke-width:0.995008"
-                                                        id="path5" /><path
-                                                        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.595;stroke-dasharray:none;stroke-opacity:1"
-                                                        d="m 65.669741,42.88866 0.916127,15.81349 h 21.834339 l 1.068814,-16.30766 c 0,0 10.333371,-0.96233 8.550511,-10.707053 -1.44015,-7.871536 -12.428606,-6.820306 -12.428606,-6.820306 0,0 -0.833656,-7.917977 -7.552894,-8.223235 -6.10294,-0.27726 -8.418412,7.960417 -8.418412,7.960417 0,0 -12.403038,-1.514974 -12.520389,8.071467 -0.10285,8.4018 8.55051,10.21288 8.55051,10.21288 z"
-                                                        id="path1-7"
-                                                        sodipodi:nodetypes="ccccscscsc" /></g></g></svg>
-                            
-                                                {% else %}
-                            <i class="far fa-star"></i>
-                        {% endif %}
-                    {% endfor %}
+               <span class="toques-container">
+                    {% if averageNotes is not null %}
+                        {% for i in 1..5 %}
+                            {% if i <= averageNotes %}
+                                <!-- Afficher la toque pleine -->
+                                <svg class="toque-svg" viewBox="0 0 132.29167 132.29167" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m 41.941905,70.665874 1.759856,30.377296 h 41.943187 l 2.053163,-31.326583 c 0,0 19.850129,-1.848611 16.425309,-20.567965 C 101.35693,34.02761 80.248393,36.046995 80.248393,36.046995 c 0,0 -1.601431,-15.210223 -14.508909,-15.796617 -3.047555,-0.138452 -5.603464,0.828408 -7.717398,2.335283 -6.018121,4.289895 -8.454148,12.956467 -8.454148,12.956467 0,0 -23.825908,-2.910225 -24.051336,15.505074 -0.197572,16.139636 16.425303,19.618672 16.425303,19.618672 z" fill="#333333"/>
+                                    </svg>
+                            {% elseif i <= averageNotes + 0.5 %}
+                                <!-- Afficher la toque demi -->
+                                <svg class="toque-svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 132.3 132.3">
+                                <path fill="#333" d="M56.4 20.5c-6.3 3.4-7.9 10-8.6 12.5-2.1-.2-6-.3-11 1a20 20 0 0 0-9.4 5.1A16.9 16.9 0 0 0 23 51a21 21 0 0 0 9 18c3 2.1 5.6 3 7.3 3.5l1.8 31H88l2-31.7c2-.3 5-1 8.5-3.2 5.1-3.2 10-9.7 8-19.9a17 17 0 0 0-5.7-10c-2.8-2.2-6-3.4-9-4.2a34 34 0 0 0-9.5-1c-.4-1.6-1-3.8-2.3-6.3-2-4-6-8.1-12.4-9.1-4.3-.1-6-.3-11.2 2.4zm11.2 2.3c3.2.7 6 3 8 6.7 1.8 3.4 2.2 6.8 2.2 6.8l.2 2.5 2.5-.3s5-.4 10 .8c2.6.7 5.2 1.7 7.1 3.4a11 11 0 0 1 4 6.9c1.6 8.5-1.8 12.3-5.7 14.7-4 2.5-8.4 3-8.4 3l-2.2.1-2 31.2H67.6Z" color="#333333" style="-inkscape-stroke:none"/>
+                                </svg>
+                            {% else %}
+                            <!-- Afficher la toque vide -->
+                                <svg class="toque-svg" viewBox="0 0 132.29167 132.29167" xmlns="http://www.w3.org/2000/svg"><path
+                                        style="fill:none;fill-opacity:1;stroke:#333333;stroke-width:4.98493;stroke-dasharray:none;stroke-opacity:1"
+                                        d="m 41.941905,70.665874 1.759856,30.377296 h 41.943187 l 2.053163,-31.326583 c 0,0 19.850129,-1.848611 16.425309,-20.567965 C 101.35693,34.02761 80.248393,36.046995 80.248393,36.046995 c 0,0 -1.601431,-15.210224 -14.508909,-15.796617 -11.723586,-0.532609 -16.171546,15.29175 -16.171546,15.29175 0,0 -23.825908,-2.910225 -24.051336,15.505074 -0.197572,16.139636 16.425303,19.618672 16.425303,19.618672 z"/></g></svg>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 </span>
             </div>
         {% endfor %}
@@ -140,107 +61,27 @@
             <a href="/recettes/{{ recette.id }}"><h3 style="overflow:hidden; height:3.5em">{{ recette.nom }}</h3></a>
             <p>{{ averageNotes[recette.id]|number_format(1) }}</p>  
             <span class="toques-container">
-                {% set note = averageNotes[recette.id] %}
-                {% for i in 1..5 %}
-                    {% if i <= note %}
+                            {% if averageNotes is not null %}
+                                {% for i in 1..5 %}
+                                    {% if i <= averageNotes %}
                                        <!-- Afficher la toque pleine -->
-                                        <svg
-                                            width="30"
-                                            height="30"
-                                            viewBox="0 0 132.29167 132.29167"
-                                            version="1.1"
-                                            id="svg1"
-                                            xml:space="preserve"
-                                            inkscape:version="1.4 (86a8ad7, 2024-10-11)"
-                                            sodipodi:docname="toque-pleine.svg"
-                                            xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-                                            xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
-                                                id="namedview1"
-                                                pagecolor="#ffffff"
-                                                bordercolor="#000000"
-                                                borderopacity="0.25"
-                                                inkscape:showpageshadow="2"
-                                                inkscape:pageopacity="0.0"
-                                                inkscape:pagecheckerboard="0"
-                                                inkscape:deskcolor="#d1d1d1"
-                                                inkscape:document-units="mm"
-                                                inkscape:zoom="1.1"
-                                                inkscape:cx="175.90909"
-                                                inkscape:cy="229.54545"
-                                                inkscape:window-width="1920"
-                                                inkscape:window-height="1017"
-                                                inkscape:window-x="1912"
-                                                inkscape:window-y="-8"
-                                                inkscape:window-maximized="1"
-                                                inkscape:current-layer="layer2" /><defs
-                                                id="defs1" /><g
-                                                inkscape:label="Calque 1"
-                                                inkscape:groupmode="layer"
-                                                id="layer1" /><g
-                                                inkscape:groupmode="layer"
-                                                id="layer2"
-                                                inkscape:label="Calque 2"><path
-                                                style="fill:#000000;stroke:#000000;stroke-width:2.49012;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
-                                                d="m 34.597463,78.525004 2.292711,39.575056 h 54.64292 l 2.674828,-40.811777 c 0,0 25.860438,-2.40834 21.398628,-26.795607 C 112.00241,30.79326 84.502548,33.424083 84.502548,33.424083 c 0,0 -2.086319,-19.815638 -18.901977,-20.579582 -15.273302,-0.693873 -21.068035,19.92185 -21.068035,19.92185 0,0 -31.040014,-3.791395 -31.333697,20.199765 -0.257394,21.02645 21.398624,25.558888 21.398624,25.558888 z"
-                                                id="path1"
-                                                sodipodi:nodetypes="ccccscscsc" /></g></svg>
-                                   {% elseif i <= note + 0.5 %}
+                                        <svg class="toque-svg" viewBox="0 0 132.29167 132.29167" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m 41.941905,70.665874 1.759856,30.377296 h 41.943187 l 2.053163,-31.326583 c 0,0 19.850129,-1.848611 16.425309,-20.567965 C 101.35693,34.02761 80.248393,36.046995 80.248393,36.046995 c 0,0 -1.601431,-15.210223 -14.508909,-15.796617 -3.047555,-0.138452 -5.603464,0.828408 -7.717398,2.335283 -6.018121,4.289895 -8.454148,12.956467 -8.454148,12.956467 0,0 -23.825908,-2.910225 -24.051336,15.505074 -0.197572,16.139636 16.425303,19.618672 16.425303,19.618672 z" fill="#333333"/>
+                                            </svg>
+                                    {% elseif i <= averageNotes + 0.5 %}
                                         <!-- Afficher la toque demi -->
-                                        <svg
-                                            width="30"
-                                            height="30"
-                                            viewBox="0 0 132.29167 132.29167"
-                                            version="1.1"
-                                            id="svg1"
-                                            xml:space="preserve"
-                                            inkscape:version="1.4 (86a8ad7, 2024-10-11)"
-                                            sodipodi:docname="toque-demi.svg"
-                                            xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-                                            xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
-                                                id="namedview1"
-                                                pagecolor="#ffffff"
-                                                bordercolor="#000000"
-                                                borderopacity="0.25"
-                                                inkscape:showpageshadow="2"
-                                                inkscape:pageopacity="0.0"
-                                                inkscape:pagecheckerboard="0"
-                                                inkscape:deskcolor="#d1d1d1"
-                                                inkscape:document-units="mm"
-                                                inkscape:zoom="1.1"
-                                                inkscape:cx="175.90909"
-                                                inkscape:cy="229.54545"
-                                                inkscape:window-width="1920"
-                                                inkscape:window-height="1017"
-                                                inkscape:window-x="1912"
-                                                inkscape:window-y="-8"
-                                                inkscape:window-maximized="1"
-                                                inkscape:current-layer="layer2" /><defs
-                                                id="defs1" /><g
-                                                inkscape:label="Calque 1"
-                                                inkscape:groupmode="layer"
-                                                id="layer1" /><g
-                                                inkscape:groupmode="layer"
-                                                id="layer2"
-                                                inkscape:label="Calque 2"><g
-                                                id="g5"
-                                                transform="matrix(1.9209735,0,0,1.9209735,-84.207927,-11.722105)"><path
-                                                    d="m 77.837673,25.623477 c 0.04969,-3.147257 0.115681,-6.085989 0.205156,-8.687325 -5.322261,0.634912 -7.371643,7.921481 -7.371643,7.921481 0,0 -12.403332,-1.515099 -12.520683,8.071342 -0.10285,8.4018 8.550899,10.21333 8.550899,10.21333 l 0.915707,15.813509 h 10.133748 c -0.02635,-3.4809 -0.06797,-10.816711 -0.03669,-19.973462 -0.03137,-2.852468 -0.01109,-6.858918 0.123506,-13.358875 z"
-                                                    style="stroke:#000000;stroke-width:0.995008"
-                                                    id="path5" /><path
-                                                    style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.595;stroke-dasharray:none;stroke-opacity:1"
-                                                    d="m 65.669741,42.88866 0.916127,15.81349 h 21.834339 l 1.068814,-16.30766 c 0,0 10.333371,-0.96233 8.550511,-10.707053 -1.44015,-7.871536 -12.428606,-6.820306 -12.428606,-6.820306 0,0 -0.833656,-7.917977 -7.552894,-8.223235 -6.10294,-0.27726 -8.418412,7.960417 -8.418412,7.960417 0,0 -12.403038,-1.514974 -12.520389,8.071467 -0.10285,8.4018 8.55051,10.21288 8.55051,10.21288 z"
-                                                    id="path1-7"
-                                                    sodipodi:nodetypes="ccccscscsc" /></g></g></svg>
-                        
-                                              {% else %}
-                        <i class="far fa-star"></i>
-                    {% endif %}
-                {% endfor %}
-            </span>
+                                        <svg class="toque-svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 132.3 132.3">
+                                        <path fill="#333" d="M56.4 20.5c-6.3 3.4-7.9 10-8.6 12.5-2.1-.2-6-.3-11 1a20 20 0 0 0-9.4 5.1A16.9 16.9 0 0 0 23 51a21 21 0 0 0 9 18c3 2.1 5.6 3 7.3 3.5l1.8 31H88l2-31.7c2-.3 5-1 8.5-3.2 5.1-3.2 10-9.7 8-19.9a17 17 0 0 0-5.7-10c-2.8-2.2-6-3.4-9-4.2a34 34 0 0 0-9.5-1c-.4-1.6-1-3.8-2.3-6.3-2-4-6-8.1-12.4-9.1-4.3-.1-6-.3-11.2 2.4zm11.2 2.3c3.2.7 6 3 8 6.7 1.8 3.4 2.2 6.8 2.2 6.8l.2 2.5 2.5-.3s5-.4 10 .8c2.6.7 5.2 1.7 7.1 3.4a11 11 0 0 1 4 6.9c1.6 8.5-1.8 12.3-5.7 14.7-4 2.5-8.4 3-8.4 3l-2.2.1-2 31.2H67.6Z" color="#333333" style="-inkscape-stroke:none"/>
+                                        </svg>
+                                    {% else %}
+                                    <!-- Afficher la toque vide -->
+                                        <svg class="toque-svg" viewBox="0 0 132.29167 132.29167" xmlns="http://www.w3.org/2000/svg"><path
+                                                style="fill:none;fill-opacity:1;stroke:#333333;stroke-width:4.98493;stroke-dasharray:none;stroke-opacity:1"
+                                                d="m 41.941905,70.665874 1.759856,30.377296 h 41.943187 l 2.053163,-31.326583 c 0,0 19.850129,-1.848611 16.425309,-20.567965 C 101.35693,34.02761 80.248393,36.046995 80.248393,36.046995 c 0,0 -1.601431,-15.210224 -14.508909,-15.796617 -11.723586,-0.532609 -16.171546,15.29175 -16.171546,15.29175 0,0 -23.825908,-2.910225 -24.051336,15.505074 -0.197572,16.139636 16.425303,19.618672 16.425303,19.618672 z"/></g></svg>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </span>
         </div>
     {% endfor %}
     </div>
