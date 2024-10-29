@@ -3,10 +3,16 @@
 {% block title %}Ajouter un Ustensile{% endblock %}
 
 {% block body %}
+ <div class="container mt-5">
     <h1>Ajouter un Ustensile</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button class="btn btn-success">Ajouter l'ustensile</button>
-    {{ form_end(form) }}
+   {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+            <div class="mb-3">
+                {{ form_row(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom de l\'Ustensile'}}) }}
+            </div>
+
+            <button class="btn" type="submit" style="background-color: #cf4727; border-color: #cf4727;">Ajouter l'ustensile</button>
+            
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

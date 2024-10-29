@@ -3,10 +3,66 @@
 {% block title %}Ajouter une recette{% endblock %}
 
 {% block body %}
-    <h1>Ajouter une nouvelle recette</h1>
+    <div class="container mt-5">
+        <h1>Ajouter une nouvelle recette</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button class="btn btn-success">Ajouter la recette</button>
-    {{ form_end(form) }}
+        {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    {{ form_row(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom de la recette'}}) }}
+                </div>
+                <div class="col-md-6 mb-3">
+                    {{ form_row(form.image, {'attr': {'class': 'form-control', 'placeholder': 'Image URL'}}) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    {{ form_row(form.temps, {'attr': {'class': 'form-control', 'placeholder': 'Temps de préparation'}}) }}
+                </div>
+                <div class="col-md-6 mb-3">
+                    {{ form_row(form.date, {'attr': {'class': 'form-control', 'placeholder': 'Date'}}) }}
+                </div>
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.idUser) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.ustensile) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.categorie) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.ingredient) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.difficulte) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.budget) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.tags) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.saison) }}
+            </div>
+
+           <button class="btn" type="submit" style="background-color: #cf4727; border-color: #cf4727;">Ajouter la recette</button>
+
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

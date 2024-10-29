@@ -17,11 +17,7 @@ class AddIngredientsType extends AbstractType
         $builder
             ->add('nom')
             ->add('thumbnail')
-            ->add('recettes', EntityType::class, [
-                'class' => Recette::class,
-                'choice_label' => 'nom',
-                'multiple' => true,
-            ])
+           
             ->add('uniteDeMesure', EntityType::class, [
                 'class' => UniteDeMesure::class,
                 'choice_label' => 'nom',
