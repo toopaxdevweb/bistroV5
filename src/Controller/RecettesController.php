@@ -251,6 +251,7 @@ class RecettesController extends AbstractController
             'budget' => $budget,
             'ingredient' => $ingredient,
             'averageNote' => $averageNote,
+            'averageNotes' => $averageNotes,
             'oneRec' => $oneRec,
             'categories' => $categories,
             'difficulte' => $difficulte,
