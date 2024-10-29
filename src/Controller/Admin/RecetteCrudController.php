@@ -30,8 +30,13 @@ class RecetteCrudController extends AbstractCrudController
             DateTimeField::new('date'),
             TextEditorField::new('description'),
             TextEditorField::new('temps'),
-            AssociationField::new('difficulte'),
-            AssociationField::new('budget'),
+
+            AssociationField::new('difficulte_id'),
+            AssociationField::new('budget_id'),
+            AssociationField::new('user_id'),
+
+         ,
+
         ];
     }
 }
