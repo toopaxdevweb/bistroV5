@@ -3,7 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Commentaire;
-
+use App\Entity\Favoris;
+use App\Entity\Recette;
 use App\Form\CommentaireType;
 use App\Repository\CategorieRepository;
 use App\Repository\CommentaireRepository;
@@ -21,6 +22,14 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class RecettesController extends AbstractController
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+        
+
     #[Route('/recettes', name: 'app_recettes')]
 
     public function index(RecetteRepository $rr, CommentaireRepository $cor, CategorieRepository $cr,IngredientRepository $ing, SaisonRepository $sr, BudgetRepository $br): Response
@@ -242,6 +251,7 @@ class RecettesController extends AbstractController
             'budget' => $budget,
             'ingredient' => $ingredient,
             'averageNote' => $averageNote,
+            'averageNotes' => $averageNotes,
             'oneRec' => $oneRec,
             'categories' => $categories,
             'difficulte' => $difficulte,
@@ -348,5 +358,35 @@ class RecettesController extends AbstractController
             
         ]);
     }
+ 
+    #[Route('/recette/{id}/favori', name:"ajout_favori")]
 
+    public function ajoutFavori(Recette $recette): Response
+    {
+        $idUser = $this->getUser(); // S'assurer que l'utilisateur est connecté
+        if (!$idUser) {
+            throw $this->createAccessDeniedException('Vous devez être connecté pour ajouter des favoris.');
+        }
+
+        $favori = $this->entityManager->getRepository(Favoris::class)->findOneBy([
+            'user' => $idUser,
+            'recette' => $recette
+        ]);
+
+        if ($favori) {
+            // Si le favori existe, on le supprime
+            $this->entityManager->remove($favori);
+        } else {
+            // Sinon, on en crée un nouveau
+            $favori = new Favoris();
+            $favori->setIdUser($idUser);
+            $favori->setRecette($recette);
+            $this->entityManager->persist($favori);
+        }
+
+        $this->entityManager->flush();
+
+        // Rediriger vers la page de la recette
+        return $this->redirectToRoute('show_recette', ['id' => $recette->getId()]);
+    }
 }
