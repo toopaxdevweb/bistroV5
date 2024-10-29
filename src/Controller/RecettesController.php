@@ -75,7 +75,7 @@ class RecettesController extends AbstractController
 
     
     #[Route('/recettes/price/{id}', name: 'app_recettes_price')]
-    public function price(CategorieRepository $cr,$id, IngredientRepository $ing, SaisonRepository $sr, BudgetRepository $br, RecetteRepository $rr): Response
+    public function price(CategorieRepository $cr,CommentaireRepository $cor, $id, IngredientRepository $ing, SaisonRepository $sr, BudgetRepository $br, RecetteRepository $rr): Response
     { 
         $saison = $sr->findAll();
         $budget = $br->findAll();
@@ -83,24 +83,38 @@ class RecettesController extends AbstractController
         $ingredient = $ing->findAll();
         $categorie = $cr->findAll();
         $budgetName = $budgetId-> getNom();
-        $recette = $rr->findAll();
+        $recettes = $rr->findAll();
         $targetRecette = $budgetId->getRecettes();
+
+         //affichage de la note
+         foreach ($recettes as $recette) {
+            $commentaires = $cor->findBy(['recette' => $recette]);
+            $totalNotes = 0;
+            $count = count($commentaires);
+
+            foreach ($commentaires as $commentaire) {
+                $totalNotes += (float)$commentaire->getNote();
+            }
+
+            $averageNotes[$recette->getId()] = $count > 0 ? $totalNotes / $count : null;
+        }
 
         return $this->render('recettes/price.html.twig', [
             'categorie' => $categorie,
             'saison' => $saison,
             'budget' => $budget,
             'ingredient' => $ingredient,
-            'recette' => $recette,
+            'recette' => $recettes,
             'budgetName' => $budgetName,
             'budgetId' => $budgetId,
 
             'targetRecette' => $targetRecette,
+            'averageNotes' => $averageNotes,
         ]);
     }
 
     #[Route('/recettes/ingredient/{id}', name: 'app_recettes_ingredient')]
-    public function ingredient(CategorieRepository $cr,$id, IngredientRepository $ing, SaisonRepository $sr, BudgetRepository $br, RecetteRepository $rr): Response
+    public function ingredient(CategorieRepository $cr,$id,CommentaireRepository $cor, IngredientRepository $ing, SaisonRepository $sr, BudgetRepository $br, RecetteRepository $rr): Response
     { 
         $saison = $sr->findAll();
         $budget = $br->findAll();
@@ -111,6 +125,18 @@ class RecettesController extends AbstractController
         $recette = $rr->findAll();
         $targetRecette = $ingredientId->getRecettes();
 
+        foreach ($recette as $recette) {
+            $commentaires = $cor->findBy(['recette' => $recette]);
+            $totalNotes = 0;
+            $count = count($commentaires);
+
+            foreach ($commentaires as $commentaire) {
+                $totalNotes += (float)$commentaire->getNote();
+            }
+
+            $averageNotes[$recette->getId()] = $count > 0 ? $totalNotes / $count : null;
+        }
+
         return $this->render('recettes/ingredient.html.twig', [
             'categorie' => $categorie,
             'saison' => $saison,
@@ -119,8 +145,8 @@ class RecettesController extends AbstractController
             'recette' => $recette,
             'ingredientName' => $ingredientName,
             'ingredientId' => $ingredientId,
-            'recette' => $recette,
             'targetRecette' => $targetRecette,
+            'averageNotes' => $averageNotes
         ]);
     }
 
@@ -209,6 +235,72 @@ class RecettesController extends AbstractController
             'ustensiles' => $ustensiles,
             'ustensile' => $ustensile,
             'commentaire' => $form->createView(),
+        ]);
+    }
+    #[Route('/', name: 'app_accueil')]
+    public function accueil(CategorieRepository $cr,CommentaireRepository $cor, IngredientRepository $ing,RecetteRepository $rr, SaisonRepository $sr, BudgetRepository $br): Response
+    {
+        $categorie = $cr->findAll();
+        $saison = $sr->findAll();
+        $budget = $br->findAll();
+        $ingredient = $ing->findAll();
+        $notes = $rr ->foundByNote();
+        $recettes = $rr->foundByOrder();
+
+        foreach ($recettes as $recette) {
+            $commentaires = $cor->findBy(['recette' => $recette]);
+            $totalNotes = 0;
+            $count = count($commentaires);
+
+            foreach ($commentaires as $commentaire) {
+                $totalNotes += (float)$commentaire->getNote();
+            }
+
+            $averageNotes[$recette->getId()] = $count > 0 ? $totalNotes / $count : null;
+        }
+
+        return $this->render('accueil.html.twig', [
+            'controller_name' => 'CategorieController',
+            'categorie' => $categorie,
+            'saison' => $saison,
+            'budget' => $budget,
+            'ingredient' => $ingredient,
+            'recettes' => $recettes,
+            'averageNotes' => $averageNotes,
+            'note' => $notes,
+        
+        ]);
+    }
+    
+    #[Route('ingredient', name: 'app_recettes_allIngredient')]
+    public function ingredientAll(CategorieRepository $cr,CommentaireRepository $cor, IngredientRepository $ing, SaisonRepository $sr, BudgetRepository $br, RecetteRepository $rr): Response
+    { 
+        $saison = $sr->findAll();
+        $budget = $br->findAll();
+        $ingredient = $ing->findAll();
+        $categorie = $cr->findAll();
+        $recettes = $rr->findAll();
+
+         //affichage de la note
+         foreach ($recettes as $recette) {
+            $commentaires = $cor->findBy(['recette' => $recette]);
+            $totalNotes = 0;
+            $count = count($commentaires);
+
+            foreach ($commentaires as $commentaire) {
+                $totalNotes += (float)$commentaire->getNote();
+            }
+
+            $averageNotes[$recette->getId()] = $count > 0 ? $totalNotes / $count : null;
+        }
+
+        return $this->render('recettes/allIngredient.html.twig', [
+            'categorie' => $categorie,
+            'saison' => $saison,
+            'budget' => $budget,
+            'ingredient' => $ingredient,
+            'recette' => $recette,
+            
         ]);
     }
 }
