@@ -66,5 +66,5 @@ class CategorieController extends AbstractController
             'recettes' => $recettes,
             ]);
     }
-   
+
 }

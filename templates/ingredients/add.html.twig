@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un ingredient{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un ingredient</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn btn-success">Ajouter l'ingredients</button>
+    {{ form_end(form) }}
+{% endblock %}

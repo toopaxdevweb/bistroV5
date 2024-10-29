@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une recette{% endblock %}
+
+{% block body %}
+    <h1>Ajouter une nouvelle recette</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn btn-success">Ajouter la recette</button>
+    {{ form_end(form) }}
+{% endblock %}
