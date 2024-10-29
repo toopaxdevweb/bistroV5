@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+{% block title %}Bistroquet{% endblock %}
+{% block body %}
+    {% if recette == null %}
+        Aucune recette existe avec cet ingredient.
+        Ajouter une recette.
+    {% else %}
+    <div class="container">
+        <h1>{{ recette.nom }}</h1>
+        <div class="favoris"><i class="far fa-star" id="etoile"></i></div>
+        <div class="">
+            <div class="d-flex gap-2">
+                <div class="d-flex gap-2">
+                    {% if averageNote is not null %}
+                    <p>Note moyenne : {{ averageNote|number_format(1) }} / 5</p>
+                    {% else %}
+                    <p>Aucune note pour le moment</p>
+                    {% endif %}
+                    <span class="toques-container">
+                            {% if averageNote is not null %}
+                                {% for i in 1..5 %}
+                                    {% if i <= averageNote %}
+                                       <!-- Afficher la toque pleine -->
+                                        <svg class="toque-svg" viewBox="0 0 132.29167 132.29167" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m 41.941905,70.665874 1.759856,30.377296 h 41.943187 l 2.053163,-31.326583 c 0,0 19.850129,-1.848611 16.425309,-20.567965 C 101.35693,34.02761 80.248393,36.046995 80.248393,36.046995 c 0,0 -1.601431,-15.210223 -14.508909,-15.796617 -3.047555,-0.138452 -5.603464,0.828408 -7.717398,2.335283 -6.018121,4.289895 -8.454148,12.956467 -8.454148,12.956467 0,0 -23.825908,-2.910225 -24.051336,15.505074 -0.197572,16.139636 16.425303,19.618672 16.425303,19.618672 z" fill="#333333"/>
+                                            </svg>
+                                    {% elseif i <= averageNote + 0.5 %}
+                                        <!-- Afficher la toque demi -->
+                                        <svg class="toque-svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 132.3 132.3">
+                                        <path fill="#333" d="M56.4 20.5c-6.3 3.4-7.9 10-8.6 12.5-2.1-.2-6-.3-11 1a20 20 0 0 0-9.4 5.1A16.9 16.9 0 0 0 23 51a21 21 0 0 0 9 18c3 2.1 5.6 3 7.3 3.5l1.8 31H88l2-31.7c2-.3 5-1 8.5-3.2 5.1-3.2 10-9.7 8-19.9a17 17 0 0 0-5.7-10c-2.8-2.2-6-3.4-9-4.2a34 34 0 0 0-9.5-1c-.4-1.6-1-3.8-2.3-6.3-2-4-6-8.1-12.4-9.1-4.3-.1-6-.3-11.2 2.4zm11.2 2.3c3.2.7 6 3 8 6.7 1.8 3.4 2.2 6.8 2.2 6.8l.2 2.5 2.5-.3s5-.4 10 .8c2.6.7 5.2 1.7 7.1 3.4a11 11 0 0 1 4 6.9c1.6 8.5-1.8 12.3-5.7 14.7-4 2.5-8.4 3-8.4 3l-2.2.1-2 31.2H67.6Z" color="#333333" style="-inkscape-stroke:none"/>
+                                        </svg>
+                                    {% else %}
+                                    <!-- Afficher la toque vide -->
+                                        <svg class="toque-svg" viewBox="0 0 132.29167 132.29167" xmlns="http://www.w3.org/2000/svg"><path
+                                                style="fill:none;fill-opacity:1;stroke:#333333;stroke-width:4.98493;stroke-dasharray:none;stroke-opacity:1"
+                                                d="m 41.941905,70.665874 1.759856,30.377296 h 41.943187 l 2.053163,-31.326583 c 0,0 19.850129,-1.848611 16.425309,-20.567965 C 101.35693,34.02761 80.248393,36.046995 80.248393,36.046995 c 0,0 -1.601431,-15.210224 -14.508909,-15.796617 -11.723586,-0.532609 -16.171546,15.29175 -16.171546,15.29175 0,0 -23.825908,-2.910225 -24.051336,15.505074 -0.197572,16.139636 16.425303,19.618672 16.425303,19.618672 z"/></g></svg>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </span>
+                </div>
+                <div><small><a href="#avis">({{ recette.commentaires|length }}) avis</a></small></div>
+            </div>
+            <img src="{{ recette.image }}" alt="" class="width100">
+            <div class="d-flex p-2 gap-3">
+                <p>Temps : {{ recette.temps }} minutes.</p>
+                <p>Difficulté : {{ recette.difficulte.nom }}.</p>
+                <p>Budget : {{ recette.budget.nom }}.</p>
+            </div>
+            {# Section des ingrédients #}
+            <section class="mb-3">
+                <h2>Ingrédients</h2>
+                {% for ingredient in ingredients %}
+                    <table>
+                        <tr>
+                            <td><img src="{{ ingredient.thumbnail }}" class="ingredient-image" alt="image de {{ ingredient.nom }}"></img></td>
+                            <td>&nbsp;{{ ingredient.nom }}</td>
+                            <td> Quantité : </td>
+                        </tr>
+                    </table>
+                {% endfor %}
+            </section>
+            {# Section des ustensiles #}
+            <section class="mb-3">
+                <h2>Ustensiles utilisés</h2>
+                {% for ustensile in ustensiles %}
+                    <tr>
+                        <td>{{ ustensile.nom }}</td><td> | </td>
+                    </tr>
+                {% endfor %}
+            </section>
+            {# Section de la préparation #}
+            <div class="mb-3">
+                <h2>Préparation</h2>
+                <p>{{ recette.description }}</p>
+            </div> 
+            {# Section des autres recettes de la même catégorie #}
+            <section class="mb-3">
+                <h2>Autres recettes que vous pourriez aimer</h2>
+                {% for recette in troisRecettes %}
+                    <div class="col">
+                        <div class="card p-2 align-center">
+                            
+                            <img src="{{ recette.image }}" alt="" class="height100">
+                            <a href="/recettes/{{recette.id}}"><h3>{{ recette.nom }}</h3></a>
+                            <p>{{ averageNotes[recette.id]|number_format(1) }}</p>  
+                            <span class="toques-container">
+                                {% set note = averageNotes[recette.id] %}
+                                    {% for i in 1..5 %}
+                                        {% if i <= note %}
+                                        <!-- Afficher la toque pleine -->
+                                            <svg class="toque-svg" viewBox="0 0 132.29167 132.29167" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m 41.941905,70.665874 1.759856,30.377296 h 41.943187 l 2.053163,-31.326583 c 0,0 19.850129,-1.848611 16.425309,-20.567965 C 101.35693,34.02761 80.248393,36.046995 80.248393,36.046995 c 0,0 -1.601431,-15.210223 -14.508909,-15.796617 -3.047555,-0.138452 -5.603464,0.828408 -7.717398,2.335283 -6.018121,4.289895 -8.454148,12.956467 -8.454148,12.956467 0,0 -23.825908,-2.910225 -24.051336,15.505074 -0.197572,16.139636 16.425303,19.618672 16.425303,19.618672 z" fill="#333333"/>
+                                            </svg>
+                                        {% elseif i <= note + 0.5 %}
+                                            <!-- Afficher la toque demi -->
+                                            <svg class="toque-svg" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 132.3 132.3">
+                                            <path fill="#333" d="M56.4 20.5c-6.3 3.4-7.9 10-8.6 12.5-2.1-.2-6-.3-11 1a20 20 0 0 0-9.4 5.1A16.9 16.9 0 0 0 23 51a21 21 0 0 0 9 18c3 2.1 5.6 3 7.3 3.5l1.8 31H88l2-31.7c2-.3 5-1 8.5-3.2 5.1-3.2 10-9.7 8-19.9a17 17 0 0 0-5.7-10c-2.8-2.2-6-3.4-9-4.2a34 34 0 0 0-9.5-1c-.4-1.6-1-3.8-2.3-6.3-2-4-6-8.1-12.4-9.1-4.3-.1-6-.3-11.2 2.4zm11.2 2.3c3.2.7 6 3 8 6.7 1.8 3.4 2.2 6.8 2.2 6.8l.2 2.5 2.5-.3s5-.4 10 .8c2.6.7 5.2 1.7 7.1 3.4a11 11 0 0 1 4 6.9c1.6 8.5-1.8 12.3-5.7 14.7-4 2.5-8.4 3-8.4 3l-2.2.1-2 31.2H67.6Z" color="#333333" style="-inkscape-stroke:none"/>
+                                            </svg>
+                                        {% else %}
+                                        <!-- Afficher la toque vide -->
+                                            <svg class="toque-svg" viewBox="0 0 132.29167 132.29167" xmlns="http://www.w3.org/2000/svg"><path
+                                                style="fill:none;fill-opacity:1;stroke:#333333;stroke-width:4.98493;stroke-dasharray:none;stroke-opacity:1"
+                                                d="m 41.941905,70.665874 1.759856,30.377296 h 41.943187 l 2.053163,-31.326583 c 0,0 19.850129,-1.848611 16.425309,-20.567965 C 101.35693,34.02761 80.248393,36.046995 80.248393,36.046995 c 0,0 -1.601431,-15.210224 -14.508909,-15.796617 -11.723586,-0.532609 -16.171546,15.29175 -16.171546,15.29175 0,0 -23.825908,-2.910225 -24.051336,15.505074 -0.197572,16.139636 16.425303,19.618672 16.425303,19.618672 z"/></g></svg>
+
+                                        {% endif %}
+                                    {% endfor %}
+                            </span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </section> 
+            {# Section des avis #}
+            <section id="avis" class="mb-5">
+                <h2>Avis</h2>
+                {% if commentaires|length > 0 %}
+                    {% for commentaire in commentaires %}
+                        <div class="commentaire mt-3">
+                            <p><strong>{{ commentaire.idUser.pseudo }}</strong> - Note : {{ commentaire.note }}/5</p>
+                            <p>{{ commentaire.commentaire }}</p>
+                            <small>Publié le {{ commentaire.date|date('d/m/Y') }}</small>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Aucun avis pour cette recette.</p>
+                {% endif %}
+            </section>  
+            {# Section des commentaires #}
+            <section id="commentaire" class="mb-5">
+                {# Formulaire pour ajouter un nouveau commentaire #}
+                {% if app.user %}
+                    <h3>Ajouter un commentaire</h3>
+                    {{ form_start(commentaire) }}
+                        {{ form_row(commentaire.commentaire, {'label': 'Votre commentaire'}) }}
+                    {{ form_end(commentaire) }}
+                {% else %}
+                    <p>Veuillez vous <a href="{{ path('app_login') }}">connecter</a> pour laisser un commentaire.</p>
+                {% endif %}
+            </section>
+        </div>    
+    </div>
+    {% endif %}
+{% endblock %}

@@ -136,6 +136,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Pseudo
+     */
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): static
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    /**
      * @see UserInterface
      */
     public function eraseCredentials(): void

@@ -76,6 +76,9 @@ class Recette
     #[ORM\ManyToMany(targetEntity: Tag::class, mappedBy: 'recette')]
     private Collection $tags;
 
+    #[ORM\ManyToOne(inversedBy: 'recette')]
+    private ?Saison $saison = null;
+
     public function __construct()
     {
         $this->ustensile = new ArrayCollection();
@@ -342,6 +345,18 @@ class Recette
         if ($this->tags->removeElement($tag)) {
             $tag->removeRecette($this);
         }
+
+        return $this;
+    }
+
+    public function getSaison(): ?Saison
+    {
+        return $this->saison;
+    }
+
+    public function setSaison(?Saison $saison): static
+    {
+        $this->saison = $saison;
 
         return $this;
     }

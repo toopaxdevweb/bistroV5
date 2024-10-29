@@ -10,13 +10,26 @@
             <h2>Mes recettes</h2>
             <table>
 
+        <div>
+            <h2>Mes recettes</h2>
+            <table>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ recette.nom }}</td><td> | </td>
+                    </tr>
+                {% endfor %}
             </table>
         </div>
         <div>
             <h2>Mes recettes favorites</h2>
             <table>
-            
+                {% for user in users %}
+                    <tr>
+                        <td>{{ favoris.recette }}</td><td> | </td>
+                    </tr>
+                {% endfor %}
             </table>
         </div>
+
     </div>
 {% endblock %}
